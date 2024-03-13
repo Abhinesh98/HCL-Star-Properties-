@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Properties Calculator</title>
+    <script src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url("https://th.bing.com/th/id/R.65400bf07c8b1be797121a653115bedd?rik=q55%2fnWyIRxBTQQ&riu=http%3a%2f%2fc1.staticflickr.com%2f5%2f4076%2f4988305016_e710a3deef.jpg&ehk=zpCuFmQIgInnup%2bNDGTptyQfzSG%2fjaVgDN%2fItmJwic0%3d&risl=&pid=ImgRaw&r=0");
+            
+            
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        h1,  h2{
+            color: white;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            opacity: 0.3;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        
+        #sec_box{
+            /* display: flex; */
+            border: 0.5px solid black;
+            border-radius: 12px;
+            padding: 10px;
+            gap: 10px;
+        }
+        input{
+            min-width: 60px;
+            max-width: 60vw;
+
+        }
+        label{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: rgb(255, 242, 218);
+        }
+        
+        .box {
+  --clr-shadow__border: #d9a1ff;
+  --clr-text: #F6F4EB;
+  --clr-space: #120e1e;
+  --clr-space-gr: #271950;
+  --clr-star: #E9F8F9;
+  --size: 3rem;
+  position: relative;
+  outline: 1px solid var(--clr-shadow__border);
+  margin-top: 24px;
+  border-radius: 6px;
+  max-width: 50vw;
+  margin-left: 25%;
+}
+
+.button {
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  background: transparent;
+  padding: calc(var(--size) / 3) var(--size);
+  border: none;
+  cursor: pointer;
+  color: var(--clr-text);
+  text-shadow: 2px 0px var(--clr-shadow__border), 0px 2px var(--clr-shadow__border),
+  -2px 0px var(--clr-shadow__border), 0px -2px var(--clr-shadow__border);
+}
+
+.space {
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  gap: 1.5rem;
+  transition: 0.5s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  background: linear-gradient( 160deg, var(--clr-space), var(--clr-space-gr));
+}
+
+.box:hover .space {
+  opacity: 1;
+}
+
+.star {
+  height: 4rem;
+  width: 0.3rem;
+  transition: 0.5s;
+  border-radius: 50px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  position: relative;
+  background-color: var(--clr-star);
+  animation: space-animation calc(0.1s * var(--i)) linear infinite;
+}
+
+@keyframes space-animation {
+  0% {
+    transform: rotate(-30deg) translateY(calc(-52% * var(--i)));
+  }
+
+  100% {
+    transform: rotate(-30deg) translateY(calc(52% * var(--i)));
+  }
+}
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Star Properties Calculator</h1>
+
+    <div id="sec_box">
+
+    
+        <label for="luminosity">Luminosity:</label>
+        <input type="number" id="luminosity" required>
+
+        <label for="spectralClass">Spectral Class:</label>
+        <input type="text" id="spectralClass" required>
+
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" required>
+
+        <label for="baseline">Baseline:</label>
+        <input type="number" id="baseline" required>
+
+    </div>
+        <hr/>
+
+        <div id="sec_box">
+        <h1>
+            Calculation of Distance
+        </h1>
+
+        <label for="angleObs1">Angle Obs1:</label>
+        <input type="number" id="angleObs1" required>
+
+        <label for="angleObs2">Angle Obs2:</label>
+        <input type="number" id="angleObs2" required>
+
+        <label for="observedWavelength">Observed Wavelength:</label>
+        <input type="number" id="observedWavelength" required>
+
+        <label for="emittedWavelength">Emitted Wavelength:</label>
+        <input type="number" id="emittedWavelength" required>
+    </div>
+    
+
+        
+
+
+        <div class="box">
+            <button class="button" onclick="calculateStarProperties()">Calculate Star Properties</button>
+            <div class="space">
+              <span style="--i: 31" class="star"></span>
+              <span style="--i: 12" class="star"></span>
+              <span style="--i: 57" class="star"></span>
+              <span style="--i: 93" class="star"></span>
+              <span style="--i: 23" class="star"></span>
+              <span style="--i: 70" class="star"></span>
+              <span style="--i: 6" class="star"></span>
+            </div>
+          </div>
+    </div>
+
+    <div id="result" style="margin-top: 20px;"></div>
+
+    <script>
+        function predictStarProperties(luminosity, spectralClass, temperature) {
+    const stefanBoltzmannConstant = 5.67e-8;
+    const sigmaT4 = stefanBoltzmannConstant * Math.pow(temperature, 4);
+    const radius = Math.sqrt(luminosity / (4 * Math.PI * sigmaT4));
+
+    let color;
+    if (temperature > 15000) {
+        color = "Blue";
+    } else if (temperature >= 10000 && temperature <= 15000) {
+        color = "White";
+    } else {
+        color = "Red";
+    }
+
+    const age = Math.random() * (1e9 - 1e6) + 1e6;
+    const solarMassToKg = 1.989e30;
+    const mass = (Math.random() * (10 - 0.1) + 0.1) * Math.sqrt(luminosity) * solarMassToKg;
+    const position = [Math.random() * 1000, Math.random() * 1000, Math.random() * 1000];
+
+    return {
+        Size: radius,
+        Color: color,
+        Age: age,
+        Mass: mass
+    };
+}
+
+function calculateDistanceAndLightYears(observedWavelength, emittedWavelength) {
+    const redshift = (observedWavelength - emittedWavelength) / emittedWavelength;
+    const hubbleConstant = 70e3;
+    const distanceParsecs = redshift * 3e8 / hubbleConstant;
+
+    if (distanceParsecs === 0) {
+        return ["Invalid", redshift];
+    }
+
+    const distanceLightYears = distanceParsecs * 3.262; // Conversion factor for light years
+    return [distanceLightYears, redshift];
+}
+
+function calculateParallaxAndParsec(baseline, angle1, angle2) {
+    const angle1Rad = angle1 / 3600 * (Math.PI / 180);
+    const angle2Rad = angle2 / 3600 * (Math.PI / 180);
+    const parallaxAngleRad = Math.abs(angle1Rad - angle2Rad);
+
+    const distanceParsecs = baseline / Math.tan(parallaxAngleRad / 2);
+    return [parallaxAngleRad * (180 / Math.PI), distanceParsecs];
+}
+
+// Handle input/output using HTML and JavaScript DOM manipulation
+function calculateStarProperties() {
+    const luminosity = parseFloat(document.getElementById("luminosity").value);
+    const spectralClass = document.getElementById("spectralClass").value;
+    const temperature = parseFloat(document.getElementById("temperature").value);
+    const baseline = parseFloat(document.getElementById("baseline").value);
+    const angleObs1 = parseFloat(document.getElementById("angleObs1").value);
+    const angleObs2 = parseFloat(document.getElementById("angleObs2").value);
+    const observedWavelength = parseFloat(document.getElementById("observedWavelength").value);
+    const emittedWavelength = parseFloat(document.getElementById("emittedWavelength").value);
+
+    const starProperties = predictStarProperties(luminosity, spectralClass, temperature);
+    const [parallaxAngleDeg, distanceParsecs] = calculateParallaxAndParsec(baseline, angleObs1, angleObs2);
+    const [distanceLightYears, redshift] = calculateDistanceAndLightYears(observedWavelength, emittedWavelength);
+    const shiftType = redshift > 0 ? "Redshift" : "Blueshift";
+
+    // Display results
+    let resultHtml = "<h2>Input Values:</h2>";
+    resultHtml += `<p>Luminosity: ${luminosity}</p>`;
+    resultHtml += `<p>Spectral Class: ${spectralClass}</p>`;
+    resultHtml += `<p>Temperature: ${temperature}</p>`;
+    resultHtml += `<p>Baseline: ${baseline}</p>`;
+    resultHtml += `<p>Angle Obs1: ${angleObs1}</p>`;
+    resultHtml += `<p>Angle Obs2: ${angleObs2}</p>`;
+    resultHtml += `<p>Observed Wavelength: ${observedWavelength}</p>`;
+    resultHtml += `<p>Emitted Wavelength: ${emittedWavelength}</p>`;
+
+    resultHtml += "<h2>Calculated Star Properties:</h2>";
+    resultHtml += `<p>Parallax Angle: ${parallaxAngleDeg.toFixed(6)} degrees</p>`;
+    resultHtml += `<p>Distance in Parsecs: ${distanceParsecs.toFixed(6)} parsecs</p>`;
+    resultHtml += distanceLightYears === "Invalid" ? "<p>Distance: Invalid</p>" :
+        `<p>Distance in Light Years: ${distanceLightYears.toFixed(6)} light years</p>`;
+    resultHtml += `<p>Redshift: ${redshift}</p>`;
+    resultHtml += `<p>Shift Type: ${shiftType}</p>`;
+
+    resultHtml += "<h2>Predicted Star Properties:</h2>";
+    resultHtml += "<p>Size (Radius): " + starProperties.Size + "</p>";
+    resultHtml += "<p>Color: " + starProperties.Color + "</p>";
+    resultHtml += "<p>Age: " + starProperties.Age + "</p>";
+    resultHtml += "<p>Mass: " + starProperties.Mass + "</p>";
+
+    document.getElementById("result").innerHTML = resultHtml;
+}
+
+    </script>
+</body>
+</html>
