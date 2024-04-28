@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Properties Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Star Properties Calculator</h1>
+
+    <div id="sec_box">
+
+    
+        <label for="luminosity">Luminosity:</label>
+        <input type="number" id="luminosity" required>
+
+        <label for="spectralClass">Spectral Class:</label>
+        <input type="text" id="spectralClass" required>
+
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" required>
+
+        <label for="baseline">Baseline:</label>
+        <input type="number" id="baseline" required>
+
+    </div>
+        <hr/>
+
+        <div id="sec_box">
+        <h1>
+            Calculation of Distance
+        </h1>
+
+        <label for="angleObs1">Angle Obs1:</label>
+        <input type="number" id="angleObs1" required>
+
+        <label for="angleObs2">Angle Obs2:</label>
+        <input type="number" id="angleObs2" required>
+
+        <label for="observedWavelength">Observed Wavelength:</label>
+        <input type="number" id="observedWavelength" required>
+
+        <label for="emittedWavelength">Emitted Wavelength:</label>
+        <input type="number" id="emittedWavelength" required>
+    </div>
+    
+
+        
+
+
+        <div class="box">
+            <button class="button" onclick="calculateStarProperties()">Calculate Star Properties</button>
+            <div class="space">
+              <span style="--i: 31" class="star"></span>
+              <span style="--i: 12" class="star"></span>
+              <span style="--i: 57" class="star"></span>
+              <span style="--i: 93" class="star"></span>
+              <span style="--i: 23" class="star"></span>
+              <span style="--i: 70" class="star"></span>
+              <span style="--i: 6" class="star"></span>
+            </div>
+          </div>
+    </div>
+
+    <div id="result" style="margin-top: 20px;">
+    </div>
+    <a href="location.html" style="text-decoration: none; float: right;">
+    <button class="btn_loc">
+        Location 🗺️
+    </button>
+</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
