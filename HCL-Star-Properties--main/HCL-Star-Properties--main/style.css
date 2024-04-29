@@ -8,7 +8,7 @@ label {
     display: block;
     margin-bottom: 5px;
 }
-h1,  h2{
+h1, h2, h3 {
     color: white;
 }
 
@@ -21,23 +21,23 @@ input {
     font-weight: 500;
 }
 
-#sec_box{
+#sec_box {
     border: 0.5px solid black;
     border-radius: 12px;
     padding: 10px;
     gap: 10px;
 }
-input{
+input {
     min-width: 60px;
     max-width: 60vw;
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     font-weight: 500;
 }
 
-p{
-    color:white
+p {
+    color: white
 }
-label{
+label {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 600;
     font-size: 20px;
@@ -110,13 +110,11 @@ label{
         transform: rotate(-30deg) translateY(calc(52% * var(--i)));
     }
 }
-
-
 .btn_loc {
     height: 45px;
     margin: 5px;
     width: 120px;
-    background: #333;
+    background: #3700ff;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -136,21 +134,21 @@ label{
       inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
     box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
       inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
-  }
-  
-  .btn_loc:hover {
+}
+.btn_loc:hover {
     -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
     box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
     color: #d6d6d6;
     -webkit-transition: 500ms;
     transition: 500ms;
-  }
-  
-  .btn_loc:active {
+}
+.btn_loc:active {
     -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
     box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
     color: #d6d6d6;
     -webkit-transition: 100ms;
     transition: 100ms;
-  }
-  
+}
+.provided-data-heading, .calculated-properties-heading {
+    color: white;
+}
